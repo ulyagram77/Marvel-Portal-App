@@ -39,3 +39,9 @@ To run build, run the following command
 ```bash
   npm run build
 ```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` file. Create `.env` in the root of project`s directory. You can get this key by creating personal account for [Marvel-API](https://developer.marvel.com/).
+
+`VITE_REACT_APP_MARVEL_API_KEY`

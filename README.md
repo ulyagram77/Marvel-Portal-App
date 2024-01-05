@@ -5,13 +5,13 @@ Portal application based on [Marvel-API](https://developer.marvel.com/)
 ## Installation
 
 ```bash
-git clone https://github.com/ulyagram77/Marvel-Portal-App.git
+git clone https://github.com/ulyagram77/Marvel-Portal-React.git
 ```
 
 Move to repo folder:
 
 ```bash
-cd Marvel-Portal-App
+cd Marvel-Portal-React
 ```
 
 Install dependencies:

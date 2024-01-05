@@ -1,6 +1,6 @@
 # Marvel Information Portal
 
-React-App with to interact with [marvel-api](https://developer.marvel.com/)
+Portal application based on [Marvel-API](https://developer.marvel.com/)
 
 ## Installation
 

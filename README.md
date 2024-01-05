@@ -1,8 +1,41 @@
-# React + Vite
+# Marvel Information Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React-App with to interact with [marvel-api](https://developer.marvel.com/)
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+git clone https://github.com/ulyagram77/Marvel-Portal-App.git
+```
+
+Move to repo folder:
+
+```bash
+cd Marvel-Portal-App
+```
+
+Install dependencies:
+
+```bash
+npm i
+```
+
+## Run Locally
+
+```bash
+  npm run dev
+```
+
+App running using `vite`, you can type `o` in console or click the `host-link` in console.
+
+```bash
+  o
+```
+
+## Build
+
+To run build, run the following command
+
+```bash
+  npm run build
+```

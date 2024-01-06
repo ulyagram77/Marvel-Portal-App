@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import MarvelService from '../../services/MarvelService';
-import './charRandom.scss';
+import './CharRandom.scss';
 
 import mjolnir from '../../assets/mjolnir.png';
 
@@ -65,7 +65,10 @@ class RandomChar extends Component {
                         Do you want to get to know him better?
                     </p>
                     <p className="randomchar__title">Or choose another one</p>
-                    <button className="button button__main">
+                    <button
+                        className="button button__main"
+                        onClick={this.updateChar}
+                    >
                         <div className="inner">try it</div>
                     </button>
                     <img

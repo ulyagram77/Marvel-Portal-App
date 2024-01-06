@@ -1,7 +1,7 @@
-import AppHeader from '../appHeader/appHeader';
-import RandomChar from '../charRandom/charRandom';
-import CharList from '../charList/charList';
-import CharInfo from '../charInfo/charInfo';
+import AppHeader from '../appHeader/AppHeader';
+import RandomChar from '../charRandom/CharRandom';
+import CharList from '../charList/CharList';
+import CharInfo from '../charInfo/CharInfo';
 
 import decoration from '../../assets/vision.png';
 

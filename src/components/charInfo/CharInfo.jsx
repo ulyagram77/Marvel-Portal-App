@@ -1,4 +1,4 @@
-import './charInfo.scss';
+import './CharInfo.scss';
 import thor from '../../assets/thor.jpeg';
 
 const CharInfo = () => {

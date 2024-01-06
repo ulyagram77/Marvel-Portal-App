@@ -1,4 +1,4 @@
-import './charList.scss';
+import './CharList.scss';
 import abyss from '../../assets/abyss.jpg';
 
 const CharList = () => {

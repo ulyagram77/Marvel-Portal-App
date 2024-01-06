@@ -1,4 +1,4 @@
-import './comicsList.scss';
+import './ComicsList.scss';
 import uw from '../../assets/UW.png';
 import xMen from '../../assets/x-men.png';
 

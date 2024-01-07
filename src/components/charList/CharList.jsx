@@ -9,20 +9,44 @@ class CharList extends Component {
     state = {
         characters: [],
         loading: true,
+        paginationLoading: false,
         error: false,
+        offset: 270,
+        charactersEnded: false,
     };
 
     marvelService = new MarvelService();
 
     componentDidMount() {
-        this.marvelService
-            .getAllCharacters()
-            .then(this.onCharacterListLoaded)
-            .catch(this.onError);
+        this.onRequest();
     }
 
-    onCharacterListLoaded = (characters) => {
-        this.setState({ characters, loading: false });
+    onRequest = (offset) => {
+        this.onCharListLoading();
+        this.marvelService
+            .getAllCharacters(offset)
+            .then(this.onCharacterListLoaded)
+            .catch(this.onError);
+    };
+
+    onCharListLoading = () => {
+        this.setState({ paginationLoading: true });
+    };
+
+    onCharacterListLoaded = (newCharacters) => {
+        let ended = false;
+
+        if (newCharacters.length < 9) {
+            ended = true;
+        }
+
+        this.setState(({ characters, offset }) => ({
+            characters: [...characters, ...newCharacters],
+            loading: false,
+            paginationLoading: false,
+            offset: offset + 9,
+            charactersEnded: ended,
+        }));
     };
 
     onError = () => {
@@ -59,7 +83,14 @@ class CharList extends Component {
     }
 
     render() {
-        const { characters, loading, error } = this.state;
+        const {
+            characters,
+            loading,
+            error,
+            paginationLoading,
+            offset,
+            charactersEnded,
+        } = this.state;
 
         const items = this.renderItems(characters);
         const errorMessage = error ? <ErrorMessage /> : null;
@@ -71,7 +102,12 @@ class CharList extends Component {
                 {errorMessage}
                 {spinner}
                 {content}
-                <button className="button button__main button__long">
+                <button
+                    className="button button__main button__long"
+                    disabled={paginationLoading}
+                    style={{ display: charactersEnded ? 'none' : 'block' }}
+                    onClick={() => this.onRequest(offset)}
+                >
                     <div className="inner">load more</div>
                 </button>
             </div>

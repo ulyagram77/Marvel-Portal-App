@@ -43,6 +43,7 @@ class CharList extends Component {
                 <li
                     className="char__item"
                     key={item.id}
+                    onClick={() => this.props.onCharacterSelected(item.id)}
                 >
                     <img
                         src={item.thumbnail}

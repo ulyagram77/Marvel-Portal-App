@@ -85,6 +85,13 @@ class RandomChar extends Component {
 //этот компонент был отделен от основного компонента для удобства работы с RandomChar компонентом
 const ShowRandomCharBlock = ({ char }) => {
     const { name, description, thumbnail, homepage, wiki } = char;
+    let imgStyle = { objectFit: 'cover' };
+    if (
+        thumbnail ===
+        'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'
+    ) {
+        imgStyle = { objectFit: 'contain' };
+    }
 
     return (
         <div className="randomchar__block">
@@ -92,6 +99,7 @@ const ShowRandomCharBlock = ({ char }) => {
                 src={thumbnail}
                 alt="Random character"
                 className="randomchar__img"
+                style={imgStyle}
             />
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>

@@ -7,10 +7,6 @@ import './CharRandom.scss';
 import mjolnir from '../../assets/mjolnir.png';
 
 class RandomChar extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         char: {},
         loading: true,
@@ -20,17 +16,12 @@ class RandomChar extends Component {
     marvelService = new MarvelService();
 
     componentDidMount() {
-        this.updateChar();
-        //this.timerId = setInterval(this.updateChar, 60000);
+        this.updateCharacter();
     }
 
-    componentWillUnmount() {
-        //clearInterval(this.timerId);
-    }
-
-    updateChar = () => {
+    updateCharacter = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.onCharLoading();
+        this.onCharacterLoading();
         this.marvelService
             .getCharacter(id)
             .then(this.onCharacterLoaded)
@@ -41,7 +32,7 @@ class RandomChar extends Component {
         this.setState({ char, loading: false });
     };
 
-    onCharLoading = () => {
+    onCharacterLoading = () => {
         this.setState({ loading: true });
     };
 
@@ -54,9 +45,7 @@ class RandomChar extends Component {
 
         const errorMessage = error ? <ErrorMessage /> : null;
         const spinner = loading ? <Spinner /> : null;
-        const content = !(loading || error) ? (
-            <ShowRandomCharBlock char={char} />
-        ) : null;
+        const content = !(loading || error) ? <View char={char} /> : null;
 
         return (
             <div className="randomchar">
@@ -72,7 +61,7 @@ class RandomChar extends Component {
                     <p className="randomchar__title">Or choose another one</p>
                     <button
                         className="button button__main"
-                        onClick={this.updateChar}
+                        onClick={this.updateCharacter}
                     >
                         <div className="inner">try it</div>
                     </button>
@@ -88,7 +77,7 @@ class RandomChar extends Component {
 }
 
 //этот компонент был отделен от основного компонента для удобства работы с RandomChar компонентом
-const ShowRandomCharBlock = ({ char }) => {
+const View = ({ char }) => {
     const { name, description, thumbnail, homepage, wiki } = char;
     let imgStyle = { objectFit: 'cover' };
     if (

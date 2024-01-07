@@ -31,7 +31,7 @@ class CharInfo extends Component {
         if (!characterId) {
             return;
         }
-        this.onGGman();
+
         this.onCharacterLoading();
         this.marvelService
             .getCharacter(characterId)

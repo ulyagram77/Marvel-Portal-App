@@ -29,6 +29,13 @@ class CharList extends Component {
         this.itemRefs.push(ref);
     };
 
+    handleKeyDownCapture = (e, itemId, index) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            this.props.onCharacterSelected(itemId);
+            this.onFocusItem(index);
+        }
+    };
+
     onFocusItem = (id) => {
         this.itemRefs.forEach((item) =>
             item.classList.remove('char__item_selected'),
@@ -89,6 +96,9 @@ class CharList extends Component {
                         this.props.onCharacterSelected(item.id);
                         this.onFocusItem(i);
                     }}
+                    onKeyDownCapture={(e) =>
+                        this.handleKeyDownCapture(e, item.id, i)
+                    }
                 >
                     <img
                         src={item.thumbnail}

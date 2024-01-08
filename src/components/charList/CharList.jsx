@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import MarvelService from '../../services/MarvelService';
@@ -22,6 +22,20 @@ class CharList extends Component {
     componentDidMount() {
         this.onRequest();
     }
+
+    itemRefs = [];
+
+    setItemRef = (ref) => {
+        this.itemRefs.push(ref);
+    };
+
+    onFocusItem = (id) => {
+        this.itemRefs.forEach((item) =>
+            item.classList.remove('char__item_selected'),
+        );
+        this.itemRefs[id].classList.add('char__item_selected');
+        this.itemRefs[id].focus();
+    };
 
     onRequest = (offset) => {
         this.onCharListLoading();
@@ -56,7 +70,7 @@ class CharList extends Component {
     };
 
     renderItems(items) {
-        const renderedItems = items.map((item) => {
+        const renderedItems = items.map((item, i) => {
             let imgStyle = { objectFit: 'cover' };
             if (
                 item.thumbnail ===
@@ -68,8 +82,13 @@ class CharList extends Component {
             return (
                 <li
                     className="char__item"
+                    tabIndex={0}
+                    ref={this.setItemRef}
                     key={item.id}
-                    onClick={() => this.props.onCharacterSelected(item.id)}
+                    onClick={() => {
+                        this.props.onCharacterSelected(item.id);
+                        this.onFocusItem(i);
+                    }}
                 >
                     <img
                         src={item.thumbnail}

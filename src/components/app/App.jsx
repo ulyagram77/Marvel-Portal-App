@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import AppHeader from '../appHeader/AppHeader';
 import RandomChar from '../charRandom/CharRandom';
-import CharList from '../charList/charList';
+import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 

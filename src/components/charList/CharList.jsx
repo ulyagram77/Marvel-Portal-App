@@ -13,7 +13,7 @@ class CharList extends Component {
         loading: true,
         paginationLoading: false,
         error: false,
-        offset: 270,
+        offset: 400,
         charactersEnded: false,
     };
 
@@ -21,12 +21,24 @@ class CharList extends Component {
 
     componentDidMount() {
         this.onRequest();
+        window.addEventListener('scrollend', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scrollend', this.handleScroll);
     }
 
     itemRefs = [];
 
     setItemRef = (ref) => {
         this.itemRefs.push(ref);
+    };
+
+    //метод для скрола
+    handleScroll = () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            this.onRequest(this.state.offset);
+        }
     };
 
     handleKeyDownCapture = (e, itemId, index) => {

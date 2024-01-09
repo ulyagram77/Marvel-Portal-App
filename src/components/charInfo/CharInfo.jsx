@@ -132,6 +132,10 @@ const View = ({ char }) => {
     );
 };
 
+View.propTypes = {
+    char: PropTypes.object,
+};
+
 CharInfo.propTypes = {
     characterId: PropTypes.number,
 };

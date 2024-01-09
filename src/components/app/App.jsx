@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import AppHeader from '../appHeader/AppHeader';
-import RandomChar from '../charRandom/CharRandom';
+import CharRandom from '../charRandom/CharRandom';
 import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
@@ -23,7 +23,7 @@ class App extends Component {
                 <AppHeader />
                 <main>
                     <ErrorBoundary>
-                        <RandomChar />
+                        <CharRandom />
                     </ErrorBoundary>
                     <div className="char__content">
                         <ErrorBoundary>

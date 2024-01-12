@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import MarvelService from '../../services/MarvelService';
@@ -8,70 +8,58 @@ import Skeleton from '../skeleton/Skeleton';
 
 import './CharInfo.scss';
 
-class CharInfo extends Component {
-    state = {
-        char: null,
-        loading: false,
-        error: false,
-    };
+const CharInfo = (props) => {
+    const [char, setChar] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
-    marvelService = new MarvelService();
+    const marvelService = new MarvelService();
 
-    componentDidMount() {
-        this.updateCharacterInfo();
-    }
+    useEffect(() => {
+        updateCharacterInfo();
+    }, [props.characterId]);
 
-    componentDidUpdate(prevProps) {
-        if (this.props.characterId !== prevProps.characterId) {
-            this.updateCharacterInfo();
-        }
-    }
-
-    updateCharacterInfo = () => {
-        const { characterId } = this.props;
+    const updateCharacterInfo = () => {
+        const { characterId } = props;
         if (!characterId) {
             return;
         }
 
-        this.onCharacterLoading();
-        this.marvelService
+        onCharacterLoading();
+        marvelService
             .getCharacter(characterId)
-            .then(this.onCharacterLoaded)
-            .catch(this.onError);
+            .then(onCharacterLoaded)
+            .catch(onError);
     };
 
-    onCharacterLoaded = (char) => {
-        this.setState({ char, loading: false });
+    const onCharacterLoaded = (char) => {
+        setLoading(false);
+        setChar(char);
     };
 
-    onCharacterLoading = () => {
-        this.setState({ loading: true });
+    const onCharacterLoading = () => {
+        setLoading(true);
     };
 
-    onError = () => {
-        this.setState({ loading: false, error: true });
+    const onError = () => {
+        setError(true);
+        setLoading(false);
     };
 
-    render() {
-        const { char, loading, error } = this.state;
+    const skeleton = char || loading || error ? null : <Skeleton />;
+    const errorMessage = error ? <ErrorMessage /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const content = !(loading || error || !char) ? <View char={char} /> : null;
 
-        const skeleton = char || loading || error ? null : <Skeleton />;
-        const errorMessage = error ? <ErrorMessage /> : null;
-        const spinner = loading ? <Spinner /> : null;
-        const content = !(loading || error || !char) ? (
-            <View char={char} />
-        ) : null;
-
-        return (
-            <div className="char__info">
-                {skeleton}
-                {errorMessage}
-                {spinner}
-                {content}
-            </div>
-        );
-    }
-}
+    return (
+        <div className="char__info">
+            {skeleton}
+            {errorMessage}
+            {spinner}
+            {content}
+        </div>
+    );
+};
 
 const View = ({ char }) => {
     const { name, description, thumbnail, homepage, wiki, comics } = char;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 
@@ -9,16 +9,15 @@ import './CharList.scss';
 
 const CharList = (props) => {
     const [characters, setCharacters] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [paginationLoading, setPaginationLoading] = useState(false);
-    const [error, setError] = useState(false);
+
     const [offset, setOffset] = useState(400);
     const [charactersEnded, setCharactersEnded] = useState(false);
 
-    const marvelService = new MarvelService();
+    const { loading, error, getAllCharacters } = useMarvelService();
 
     useEffect(() => {
-        onRequest();
+        onRequest(offset, true);
     }, []);
 
     useEffect(() => {
@@ -39,8 +38,6 @@ const CharList = (props) => {
 
     const itemRefs = useRef([]);
 
-    //метод для скрола
-
     const handleKeyDownCapture = (e, itemId, index) => {
         if (e.key === ' ' || e.key === 'Enter') {
             props.onCharacterSelected(itemId);
@@ -56,16 +53,9 @@ const CharList = (props) => {
         itemRefs.current[id].focus();
     };
 
-    const onRequest = (offset) => {
-        onCharListLoading();
-        marvelService
-            .getAllCharacters(offset)
-            .then(onCharacterListLoaded)
-            .catch(onError);
-    };
-
-    const onCharListLoading = () => {
-        setPaginationLoading(true);
+    const onRequest = (offset, initial) => {
+        initial ? setPaginationLoading(false) : setPaginationLoading(true);
+        getAllCharacters(offset).then(onCharacterListLoaded);
     };
 
     const onCharacterListLoaded = (newCharacters) => {
@@ -76,15 +66,9 @@ const CharList = (props) => {
         }
 
         setCharacters((characters) => [...characters, ...newCharacters]);
-        setLoading((loading) => false);
         setPaginationLoading((paginationLoading) => false);
         setOffset((offset) => offset + 9);
         setCharactersEnded((charactersEnded) => ended);
-    };
-
-    const onError = () => {
-        setError(true);
-        setLoading(false);
     };
 
     function renderItems(items) {
@@ -127,14 +111,13 @@ const CharList = (props) => {
     const items = renderItems(characters);
 
     const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error) ? items : null;
+    const spinner = loading && !paginationLoading ? <Spinner /> : null;
 
     return (
         <div className="char__list">
             {errorMessage}
             {spinner}
-            {content}
+            {items}
             <button
                 className="button button__main button__long"
                 disabled={paginationLoading}

@@ -2,10 +2,11 @@ import errorPic from './error.gif';
 
 const styles = {
     display: 'block',
-    width: '250px',
-    height: '250px',
+    width: '230px',
+    height: '230px',
     objectFit: 'contain',
     margin: '0 auto',
+    alignSelf: 'center',
 };
 
 const ErrorMessage = () => {

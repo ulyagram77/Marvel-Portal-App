@@ -10,10 +10,8 @@ import './CharList.scss';
 const CharList = (props) => {
     const [characters, setCharacters] = useState([]);
     const [paginationLoading, setPaginationLoading] = useState(false);
-
     const [offset, setOffset] = useState(400);
     const [charactersEnded, setCharactersEnded] = useState(false);
-
     const { loading, error, getAllCharacters } = useMarvelService();
 
     useEffect(() => {
@@ -66,9 +64,9 @@ const CharList = (props) => {
         }
 
         setCharacters((characters) => [...characters, ...newCharacters]);
-        setPaginationLoading((paginationLoading) => false);
+        setPaginationLoading(false);
         setOffset((offset) => offset + 9);
-        setCharactersEnded((charactersEnded) => ended);
+        setCharactersEnded(ended);
     };
 
     function renderItems(items) {

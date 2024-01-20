@@ -34,8 +34,8 @@ const CharList = (props) => {
         return () => {
             window.removeEventListener('scrollend', handleScroll);
         };
-    }, [offset]);
-    //!
+    }, [offset, loading]);
+    //! (probably fixed)
 
     const itemRefs = useRef([]);
 

@@ -18,11 +18,13 @@ const CharList = (props) => {
         onRequest(offset, true);
     }, []);
 
+    // ! bug with doubled characters when triggered pagination by scroll
     useEffect(() => {
         const handleScroll = () => {
             if (
+                !loading &&
                 window.innerHeight + window.scrollY >=
-                document.body.offsetHeight
+                    document.body.offsetHeight
             ) {
                 onRequest(offset);
             }
@@ -33,6 +35,7 @@ const CharList = (props) => {
             window.removeEventListener('scrollend', handleScroll);
         };
     }, [offset]);
+    //!
 
     const itemRefs = useRef([]);
 

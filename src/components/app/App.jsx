@@ -10,7 +10,7 @@ import decoration from '../../assets/vision.png';
 const App = () => {
     const [selectedCharacter, setSelectedCharacter] = useState(null);
 
-    const onCharacterSelected = (id) => {
+    const onCharacterSelected = id => {
         setSelectedCharacter(id);
     };
 
@@ -29,11 +29,7 @@ const App = () => {
                         <CharInfo characterId={selectedCharacter} />
                     </ErrorBoundary>
                 </div>
-                <img
-                    className="bg-decoration"
-                    src={decoration}
-                    alt="vision"
-                />
+                <img className="bg-decoration" src={decoration} alt="vision" />
             </main>
         </div>
     );

@@ -24,7 +24,7 @@ const CharRandom = () => {
         getCharacter(id).then(onCharacterLoaded);
     };
 
-    const onCharacterLoaded = (char) => {
+    const onCharacterLoaded = char => {
         setChar(char);
     };
 
@@ -44,17 +44,10 @@ const CharRandom = () => {
                     Do you want to get to know him better?
                 </p>
                 <p className="randomchar__title">Or choose another one</p>
-                <button
-                    className="button button__main"
-                    onClick={updateCharacter}
-                >
+                <button className="button button__main" onClick={updateCharacter}>
                     <div className="inner">try it</div>
                 </button>
-                <img
-                    src={mjolnir}
-                    alt="mjolnir"
-                    className="randomchar__decoration"
-                />
+                <img src={mjolnir} alt="mjolnir" className="randomchar__decoration" />
             </div>
         </div>
     );
@@ -83,16 +76,10 @@ const View = ({ char }) => {
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr">{description}</p>
                 <div className="randomchar__btns">
-                    <a
-                        href={homepage}
-                        className="button button__main"
-                    >
+                    <a href={homepage} className="button button__main">
                         <div className="inner">homepage</div>
                     </a>
-                    <a
-                        href={wiki}
-                        className="button button__secondary"
-                    >
+                    <a href={wiki} className="button button__secondary">
                         <div className="inner">Wiki</div>
                     </a>
                 </div>

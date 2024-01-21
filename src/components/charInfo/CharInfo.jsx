@@ -8,7 +8,7 @@ import Skeleton from '../skeleton/Skeleton';
 
 import './CharInfo.scss';
 
-const CharInfo = (props) => {
+const CharInfo = props => {
     const [char, setChar] = useState(null);
 
     const { loading, error, getCharacter, clearError } = useMarvelService();
@@ -27,7 +27,7 @@ const CharInfo = (props) => {
         getCharacter(characterId).then(onCharacterLoaded);
     };
 
-    const onCharacterLoaded = (char) => {
+    const onCharacterLoaded = char => {
         setChar(char);
     };
 
@@ -60,24 +60,14 @@ const View = ({ char }) => {
     return (
         <>
             <div className="char__basics">
-                <img
-                    src={thumbnail}
-                    alt={name}
-                    style={imgStyle}
-                />
+                <img src={thumbnail} alt={name} style={imgStyle} />
                 <div>
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
-                        <a
-                            href={homepage}
-                            className="button button__main"
-                        >
+                        <a href={homepage} className="button button__main">
                             <div className="inner">homepage</div>
                         </a>
-                        <a
-                            href={wiki}
-                            className="button button__secondary"
-                        >
+                        <a href={wiki} className="button button__secondary">
                             <div className="inner">Wiki</div>
                         </a>
                     </div>
@@ -86,16 +76,11 @@ const View = ({ char }) => {
             <div className="char__descr">{description}</div>
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">
-                {comics.length > 0
-                    ? null
-                    : 'There are no comics with this character =('}
+                {comics.length > 0 ? null : 'There are no comics with this character =('}
                 {comics.map((item, i) => {
                     if (i > 9) return;
                     return (
-                        <li
-                            key={i}
-                            className="char__comics-item"
-                        >
+                        <li key={i} className="char__comics-item">
                             {item.name}
                         </li>
                     );

@@ -8,11 +8,7 @@ const ComicsList = () => {
             <ul className="comics__grid">
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={uw}
-                            alt="ultimate war"
-                            className="comics__item-img"
-                        />
+                        <img src={uw} alt="ultimate war" className="comics__item-img" />
                         <div className="comics__item-name">
                             ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB
                         </div>
@@ -21,11 +17,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={xMen}
-                            alt="x-men"
-                            className="comics__item-img"
-                        />
+                        <img src={xMen} alt="x-men" className="comics__item-img" />
                         <div className="comics__item-name">
                             X-Men: Days of Future Past
                         </div>
@@ -34,11 +26,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={uw}
-                            alt="ultimate war"
-                            className="comics__item-img"
-                        />
+                        <img src={uw} alt="ultimate war" className="comics__item-img" />
                         <div className="comics__item-name">
                             ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB
                         </div>
@@ -47,11 +35,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={xMen}
-                            alt="x-men"
-                            className="comics__item-img"
-                        />
+                        <img src={xMen} alt="x-men" className="comics__item-img" />
                         <div className="comics__item-name">
                             X-Men: Days of Future Past
                         </div>
@@ -60,11 +44,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={uw}
-                            alt="ultimate war"
-                            className="comics__item-img"
-                        />
+                        <img src={uw} alt="ultimate war" className="comics__item-img" />
                         <div className="comics__item-name">
                             ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB
                         </div>
@@ -73,11 +53,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={xMen}
-                            alt="x-men"
-                            className="comics__item-img"
-                        />
+                        <img src={xMen} alt="x-men" className="comics__item-img" />
                         <div className="comics__item-name">
                             X-Men: Days of Future Past
                         </div>
@@ -86,11 +62,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={uw}
-                            alt="ultimate war"
-                            className="comics__item-img"
-                        />
+                        <img src={uw} alt="ultimate war" className="comics__item-img" />
                         <div className="comics__item-name">
                             ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB
                         </div>
@@ -99,11 +71,7 @@ const ComicsList = () => {
                 </li>
                 <li className="comics__item">
                     <a href="#">
-                        <img
-                            src={xMen}
-                            alt="x-men"
-                            className="comics__item-img"
-                        />
+                        <img src={xMen} alt="x-men" className="comics__item-img" />
                         <div className="comics__item-name">
                             X-Men: Days of Future Past
                         </div>

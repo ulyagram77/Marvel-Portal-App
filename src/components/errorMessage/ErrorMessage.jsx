@@ -10,13 +10,7 @@ const styles = {
 };
 
 const ErrorMessage = () => {
-    return (
-        <img
-            src={errorPic}
-            alt="Error"
-            style={styles}
-        />
-    );
+    return <img src={errorPic} alt="Error" style={styles} />;
 };
 
 export default ErrorMessage;

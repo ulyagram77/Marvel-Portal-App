@@ -1,0 +1,51 @@
+@import '../../../styles/variables.scss';
+
+.notFound {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.notFound_content {
+    max-width: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18vw;
+        color: $main-color;
+        text-align: center;
+    }
+
+    h4 {
+        position: relative;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        color: white;
+        background: $main-color;
+        font-weight: 300;
+        padding: 10px 20px;
+        display: inline-block;
+    }
+
+    p {
+        color: $dark;
+        font-size: 1.2em;
+    }
+
+
+}
+
+.notFound__img {
+    img {
+        width: 100%;
+    }
+}

@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 import './Page404.scss';
 
 import venom from './marvel-angry-venom-doodle.gif';
 
 const Page404 = () => {
-    let [state, setState] = useState();
-
     return (
         <div className="notFound">
             <div className="notFound_content">

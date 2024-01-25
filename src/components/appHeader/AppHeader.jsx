@@ -22,7 +22,7 @@ const AppHeader = () => {
                     </li>
                     /
                     <li>
-                        <NavLink end style={isLinkActive} to="/comics">
+                        <NavLink style={isLinkActive} to="/comics">
                             Comics
                         </NavLink>
                     </li>

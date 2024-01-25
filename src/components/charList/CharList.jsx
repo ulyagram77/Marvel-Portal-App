@@ -16,6 +16,7 @@ const CharList = props => {
 
     useEffect(() => {
         onRequest(offset, true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -32,6 +33,7 @@ const CharList = props => {
         return () => {
             window.removeEventListener('scrollend', handleScroll);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [offset, loading]);
 
     const itemRefs = useRef([]);

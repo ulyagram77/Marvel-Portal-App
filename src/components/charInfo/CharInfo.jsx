@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import useMarvelService from '../../services/MarvelService';
@@ -15,6 +17,7 @@ const CharInfo = props => {
 
     useEffect(() => {
         updateCharacterInfo();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.characterId]);
 
     const updateCharacterInfo = () => {
@@ -78,10 +81,13 @@ const View = ({ char }) => {
             <ul className="char__comics-list">
                 {comics.length > 0 ? null : 'There are no comics with this character =('}
                 {comics.map((item, i) => {
+                    //извлекаем id всех комиксов вначале разделим строку, потом извлечем последний елемент
+                    const comicsId = item.resourceURI.split('/').pop();
+
                     if (i > 9) return;
                     return (
                         <li key={i} className="char__comics-item">
-                            {item.name}
+                            <Link to={`/comics/${comicsId}`}>{item.name}</Link>
                         </li>
                     );
                 })}

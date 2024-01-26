@@ -12,7 +12,7 @@ import './SingleComicPage.scss';
 const SingleComicPage = () => {
     let [comic, setComic] = useState(null);
 
-    const { comicId } = useParams();
+    let { comicId } = useParams();
     const { loading, error, getComic, clearError } = useMarvelService();
 
     useEffect(() => {

@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "prepare": "husky"
+        "prepare": "husky install"
     },
     "dependencies": {
         "prop-types": "^15.8.1",
@@ -32,7 +32,7 @@
         "vite": "^5.0.8"
     },
     "lint-staged": {
-        "*.(js|jsx)": [
+        "**/*.{js,jsx}": [
             "prettier --write",
             "eslint --fix"
         ]

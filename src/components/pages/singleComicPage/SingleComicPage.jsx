@@ -10,7 +10,7 @@ import ErrorMessage from '../../errorMessage/ErrorMessage';
 import './SingleComicPage.scss';
 
 const SingleComicPage = () => {
-    const [comic, setComic] = useState(null);
+    let [comic, setComic] = useState(null);
 
     const { comicId } = useParams();
     const { loading, error, getComic, clearError } = useMarvelService();

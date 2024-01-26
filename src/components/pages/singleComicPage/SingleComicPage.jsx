@@ -15,8 +15,6 @@ const SingleComicPage = () => {
     const { comicId } = useParams();
     const { loading, error, getComic, clearError } = useMarvelService();
 
-    console.log('fcsd');
-
     useEffect(() => {
         updateComic();
         // eslint-disable-next-line react-hooks/exhaustive-deps

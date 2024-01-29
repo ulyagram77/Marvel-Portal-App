@@ -19,10 +19,8 @@ const useMarvelService = () => {
         return _transformCharacter(res.data.results[0]);
     };
 
-    const getAllComics = async (offset = 0) => {
-        const res = await request(
-            `${_apiBase}comics?orderBy=issueNumber&limit=8&offset=${offset}&${_apiKey}`,
-        );
+    const getAllComics = async (offset = _baseOffset) => {
+        const res = await request(`${_apiBase}comics?offset=${offset}&${_apiKey}`);
         return res.data.results.map(_transformComics);
     };
 
@@ -52,14 +50,14 @@ const useMarvelService = () => {
             description:
                 comics.description || 'There is no description for this comic =(',
             pageCount: comics.pageCount
-                ? `${comics.pageCount} p.`
+                ? `${comics.pageCount} pages.`
                 : 'No information about the number of pages',
             thumbnail: comics.thumbnail.path + `.${comics.thumbnail.extension}`,
             language: comics.textObjects[0]?.language || 'en-us',
             // optional chaining operator
             price: comics.prices[0].price
                 ? `${comics.prices[0].price}$`
-                : 'not available',
+                : 'not available now',
         };
     };
 

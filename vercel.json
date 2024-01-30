@@ -1,0 +1,5 @@
+{
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/src/components/pages/404Page/Page404.jsx" }
+    ]
+}

@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 
-import useMarvelService from '../../../services/MarvelService';
-import Spinner from '../../spinner/Spinner';
-import ErrorMessage from '../../errorMessage/ErrorMessage';
+import useMarvelService from 'src/services/MarvelService';
+import Spinner from 'src/components/spinner/Spinner';
+import ErrorMessage from 'src/components/errorMessage/ErrorMessage';
 
 import './SingleComicPage.scss';
 

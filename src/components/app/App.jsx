@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppHeader from '../appHeader/AppHeader';
 import Spinner from '../spinner/Spinner';
 
-const Page404 = lazy(() => import('../pages/404Page/Page404'));
-const MainPage = lazy(() => import('../pages/mainPage/MainPage'));
-const ComicsPage = lazy(() => import('../pages/comicsPage/ComicsPage'));
-const SingleComicPage = lazy(() => import('../pages/singleComicPage/SingleComicPage'));
+const Page404 = lazy(() => import('pages/404Page/Page404'));
+const MainPage = lazy(() => import('pages/mainPage/MainPage'));
+const ComicsPage = lazy(() => import('pages/comicsPage/ComicsPage'));
+const SingleComicPage = lazy(() => import('pages/singleComicPage/SingleComicPage'));
 
 const App = () => {
     return (

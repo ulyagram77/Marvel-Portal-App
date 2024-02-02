@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
 class ErrorBoundary extends Component {
@@ -7,8 +8,7 @@ class ErrorBoundary extends Component {
         error: false,
     };
 
-    componentDidCatch(error, errorInfo) {
-        // console.log(error, errorInfo);
+    componentDidCatch() {
         this.setState({ error: true });
     }
 

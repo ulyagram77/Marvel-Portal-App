@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import useMarvelService from 'src/services/MarvelService';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -17,6 +19,7 @@ const ComicsList = () => {
 
     useEffect(() => {
         onRequest(offset, true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -55,21 +58,27 @@ const ComicsList = () => {
     function renderItems(items) {
         const renderedItems = items.map((item, i) => {
             return (
-                <li className="comics__item" key={i}>
-                    <Link to={`/comics/${item.id}`}>
-                        <img
-                            src={item.thumbnail}
-                            alt={item.title}
-                            className="comics__item-img"
-                        />
-                        <div className="comics__item-name">{item.title}</div>
-                        <div className="comics__item-price">{item.price}</div>
-                    </Link>
-                </li>
+                <CSSTransition key={i} timeout={500} classNames="comics__item">
+                    <li className="comics__item">
+                        <Link to={`/comics/${item.id}`}>
+                            <img
+                                src={item.thumbnail}
+                                alt={item.title}
+                                className="comics__item-img"
+                            />
+                            <div className="comics__item-name">{item.title}</div>
+                            <div className="comics__item-price">{item.price}</div>
+                        </Link>
+                    </li>
+                </CSSTransition>
             );
         });
 
-        return <ul className="comics__grid">{renderedItems}</ul>;
+        return (
+            <ul className="comics__grid">
+                <TransitionGroup component={null}>{renderedItems}</TransitionGroup>
+            </ul>
+        );
     }
 
     const items = renderItems(comics);

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 
 import useMarvelService from 'src/services/MarvelService';
-import Spinner from 'src/components/spinner/Spinner';
-import ErrorMessage from 'src/components/errorMessage/ErrorMessage';
+import Spinner from 'src/components/others/spinner/Spinner';
+import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
 
 import './SingleComicPage.scss';
 

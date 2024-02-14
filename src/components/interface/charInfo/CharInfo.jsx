@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import useMarvelService from 'src/services/MarvelService';
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../errorMessage/ErrorMessage';
-import Skeleton from '../skeleton/Skeleton';
+import Spinner from 'src/components/others/spinner/Spinner';
+import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
+import Skeleton from 'src/components/others/skeleton/Skeleton';
 
 import './CharInfo.scss';
 

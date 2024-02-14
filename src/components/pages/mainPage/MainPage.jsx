@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import CharRandom from 'src/components/charRandom/CharRandom';
-import CharList from 'src/components/charList/CharList';
-import CharInfo from 'src/components/charInfo/CharInfo';
-import ErrorBoundary from 'src/components/errorBoundary/ErrorBoundary';
+import CharRandom from 'src/components/interface/charRandom/CharRandom';
+import CharList from 'src/components/interface/charList/CharList';
+import CharInfo from 'src/components/interface/charInfo/CharInfo';
+import ErrorBoundary from 'src/components/others/errorBoundary/ErrorBoundary';
 
 import decoration from 'src/assets/vision.png';
 

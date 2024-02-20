@@ -5,6 +5,8 @@
             "src/*": ["src/*"],
             "components/*": ["components/*"],
             "pages/*": ["components/pages*"],
+            "interface/*": ["components/interface*"],
+            "others/*": ["components/others*"],
             "assets/*": ["assets/*"],
             "hooks/*": ["hooks/*"],
             "services/*": ["services/*"],

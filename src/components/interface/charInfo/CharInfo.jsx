@@ -8,6 +8,7 @@ import Spinner from 'src/components/others/spinner/Spinner';
 import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
 import Skeleton from 'src/components/others/skeleton/Skeleton';
 
+import arrow from 'src/assets/arrow.svg';
 import './CharInfo.scss';
 
 const CharInfo = props => {
@@ -77,32 +78,64 @@ const View = ({ char }) => {
                 </div>
             </div>
             <div className="char__descr">{description}</div>
-            <div className="char__comics">Comics:</div>
-            <ul className="char__comics-list">
-                {comics.length > 0 ? null : 'There are no comics with this character =('}
-                {comics.map((item, i) => {
-                    //извлекаем id всех комиксов вначале разделим строку, потом извлечем последний елемент
-                    const comicsId = item.resourceURI.split('/').pop();
+            <ExpandableList data={comics} />
+        </>
+    );
+};
 
-                    if (i > 9) return;
-                    return (
-                        <li key={i} className="char__comics-item">
-                            <Link
-                                className="char__comics-link"
-                                to={`/comics/${comicsId}`}
-                            >
-                                {item.name}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
+const ExpandableList = ({ data }) => {
+    const [isExpanded, setExpanded] = useState(true);
+
+    const toggleExpanded = () => {
+        setExpanded(!isExpanded);
+    };
+
+    const classNames = `char__comics-arrow ${isExpanded ? '' : 'char__comics-arrow_active'}`;
+
+    return (
+        <>
+            <div className="char__comics" onClick={toggleExpanded}>
+                <div className="char__comics-title">Comics:</div>
+                <img className={classNames} src={arrow} alt="arrow" />
+            </div>
+
+            {isExpanded ? (
+                <ul className="char__comics-list">
+                    {data.length > 0
+                        ? null
+                        : 'There are no comics with this character =('}
+                    {data.map((item, i) => {
+                        //извлекаем id всех комиксов вначале разделим строку, потом извлечем последний елемент
+                        const comicsId = item.resourceURI.split('/').pop();
+
+                        if (i > 9) return;
+                        return (
+                            <li key={i} className="char__comics-item">
+                                <Link
+                                    className="char__comics-link"
+                                    to={`/comics/${comicsId}`}
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            ) : (
+                <div className="char__comics-nolist">
+                    Click on arrow to expand list of comics...
+                </div>
+            )}
         </>
     );
 };
 
 View.propTypes = {
     char: PropTypes.object,
+};
+
+ExpandableList.propTypes = {
+    data: PropTypes.array,
 };
 
 CharInfo.propTypes = {

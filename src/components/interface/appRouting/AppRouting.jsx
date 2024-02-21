@@ -8,11 +8,9 @@ const Page404 = lazy(() => import('pages/404Page/Page404'));
 const MainPage = lazy(() => import('pages/mainPage/MainPage'));
 const ComicsPage = lazy(() => import('pages/comicsPage/ComicsPage'));
 const SingleCharacterLayout = lazy(
-    () => import('interface/singleCharacterLayout/SingleCharacterLayout'),
+    () => import('../singleCharacterlayout/SingleCharacterLayout'),
 );
-const SingleComicLayout = lazy(
-    () => import('interface/singleComicLayout/SingleComicLayout'),
-);
+const SingleComicLayout = lazy(() => import('../singleComicLayout/SingleComicLayout'));
 const SinglePage = lazy(() => import('pages/singlePage/SinglePage'));
 
 const AppRouting = () => {

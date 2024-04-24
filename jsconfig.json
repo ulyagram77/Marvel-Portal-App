@@ -11,6 +11,7 @@
             "hooks/*": ["hooks/*"],
             "services/*": ["services/*"],
             "styles/*": ["styles/*"],
+            "utils/*": ["utils/*"],
         },
     },
 }

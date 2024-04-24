@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Spinner from 'src/components/others/spinner/Spinner';
-import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
-
 import useMarvelService from 'src/services/MarvelService';
-
-import './CharRandom.scss';
+import setContent from 'src/utils/setContent';
 
 import mjolnir from 'src/assets/mjolnir.png';
+import './CharRandom.scss';
 
 const CharRandom = () => {
     const [char, setChar] = useState({});
 
-    const { loading, error, getCharacter, clearError } = useMarvelService();
+    const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
         updateCharacter();
@@ -23,22 +20,18 @@ const CharRandom = () => {
     const updateCharacter = () => {
         clearError();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        getCharacter(id).then(onCharacterLoaded);
+        getCharacter(id)
+            .then(onCharacterLoaded)
+            .then(() => setProcess('confirmed'));
     };
 
     const onCharacterLoaded = char => {
         setChar(char);
     };
 
-    const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error) ? <View char={char} /> : null;
-
     return (
         <div className="randomchar">
-            {errorMessage}
-            {spinner}
-            {content}
+            {setContent(process, View, char)}
             <div className="randomchar__static">
                 <p className="randomchar__title">
                     Random character for today!
@@ -56,8 +49,8 @@ const CharRandom = () => {
 };
 
 //этот компонент был отделен от основного компонента для удобства работы с RandomChar компонентом
-const View = ({ char }) => {
-    const { name, description, thumbnail, homepage, wiki } = char;
+const View = ({ data }) => {
+    const { name, description, thumbnail, homepage, wiki } = data;
     let imgStyle = { objectFit: 'cover' };
     if (
         thumbnail ===
@@ -91,7 +84,7 @@ const View = ({ char }) => {
 };
 
 View.propTypes = {
-    char: PropTypes.object,
+    data: PropTypes.object,
 };
 
 export default CharRandom;

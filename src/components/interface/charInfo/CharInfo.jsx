@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import useMarvelService from 'src/services/MarvelService';
-import Spinner from 'src/components/others/spinner/Spinner';
-import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
-import Skeleton from 'src/components/others/skeleton/Skeleton';
+import setContent from 'src/utils/setContent';
 
 import arrow from 'src/assets/arrow.svg';
 import './CharInfo.scss';
@@ -14,7 +12,7 @@ import './CharInfo.scss';
 const CharInfo = props => {
     const [char, setChar] = useState(null);
 
-    const { loading, error, getCharacter, clearError } = useMarvelService();
+    const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
         updateCharacterInfo();
@@ -28,30 +26,20 @@ const CharInfo = props => {
         }
 
         clearError();
-        getCharacter(characterId).then(onCharacterLoaded);
+        getCharacter(characterId)
+            .then(onCharacterLoaded)
+            .then(() => setProcess('confirmed'));
     };
 
     const onCharacterLoaded = char => {
         setChar(char);
     };
 
-    const skeleton = char || loading || error ? null : <Skeleton />;
-    const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error || !char) ? <View char={char} /> : null;
-
-    return (
-        <div className="char__info">
-            {skeleton}
-            {errorMessage}
-            {spinner}
-            {content}
-        </div>
-    );
+    return <div className="char__info">{setContent(process, View, char)}</div>;
 };
 
-const View = ({ char }) => {
-    const { name, description, thumbnail, homepage, wiki, comics } = char;
+const View = ({ data }) => {
+    const { name, description, thumbnail, homepage, wiki, comics } = data;
 
     let imgStyle = { objectFit: 'cover' };
     if (
@@ -131,7 +119,7 @@ const ExpandableList = ({ data }) => {
 };
 
 View.propTypes = {
-    char: PropTypes.object,
+    data: PropTypes.object,
 };
 
 ExpandableList.propTypes = {

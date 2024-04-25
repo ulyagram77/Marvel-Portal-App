@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import useMarvelService from 'src/services/MarvelService';
 import setContent from 'src/utils/setContent';
@@ -11,7 +12,6 @@ import './CharInfo.scss';
 
 const CharInfo = props => {
     const [char, setChar] = useState(null);
-
     const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
@@ -73,6 +73,7 @@ const View = ({ data }) => {
 
 const ExpandableList = ({ data }) => {
     const [isExpanded, setExpanded] = useState(true);
+    const [parent] = useAutoAnimate();
 
     const toggleExpanded = () => {
         setExpanded(!isExpanded);
@@ -87,33 +88,35 @@ const ExpandableList = ({ data }) => {
                 <img className={classNames} src={arrow} alt="arrow" />
             </div>
 
-            {isExpanded ? (
-                <ul className="char__comics-list">
-                    {data.length > 0
-                        ? null
-                        : 'There are no comics with this character =('}
-                    {data.map((item, i) => {
-                        //извлекаем id всех комиксов вначале разделим строку, потом извлечем последний елемент
-                        const comicsId = item.resourceURI.split('/').pop();
+            <div ref={parent}>
+                {isExpanded ? (
+                    <ul className="char__comics-list">
+                        {data.length > 0
+                            ? null
+                            : 'There are no comics with this character =('}
+                        {data.map((item, i) => {
+                            //извлекаем id всех комиксов вначале разделим строку, потом извлечем последний елемент
+                            const comicsId = item.resourceURI.split('/').pop();
 
-                        if (i > 9) return;
-                        return (
-                            <li key={i} className="char__comics-item">
-                                <Link
-                                    className="char__comics-link"
-                                    to={`/comics/${comicsId}`}
-                                >
-                                    {item.name}
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
-            ) : (
-                <div className="char__comics-nolist">
-                    Click on arrow to expand list of comics...
-                </div>
-            )}
+                            if (i > 9) return;
+                            return (
+                                <li key={i} className="char__comics-item">
+                                    <Link
+                                        className="char__comics-link"
+                                        to={`/comics/${comicsId}`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                ) : (
+                    <div className="char__comics-nolist">
+                        Click on arrow to expand list of comics...
+                    </div>
+                )}
+            </div>
         </>
     );
 };

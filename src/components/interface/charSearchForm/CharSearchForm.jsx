@@ -3,8 +3,8 @@ import { Formik, Form, Field, ErrorMessage as FormikErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import useMarvelService from 'src/services/MarvelService';
-import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
+import { useMarvelService } from 'src/services';
+import { ErrorMessage } from 'src/components/others';
 
 import './CharSearchForm.scss';
 

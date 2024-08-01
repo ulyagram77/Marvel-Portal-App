@@ -3,9 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import useMarvelService from 'src/services/MarvelService';
-import ErrorMessage from 'src/components/others/errorMessage/ErrorMessage';
-import Spinner from 'src/components/others/spinner/Spinner';
+import { useMarvelService } from 'src/services';
+import { ErrorMessage, Spinner } from 'src/components/others';
 
 import './CharList.scss';
 

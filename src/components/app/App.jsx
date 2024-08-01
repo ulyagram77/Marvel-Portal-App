@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import Loader from '../others/loader/Loader';
+import { Loader } from '../others';
 
 const AppRouting = lazy(() => import('../interface/appRouting/AppRouting'));
 

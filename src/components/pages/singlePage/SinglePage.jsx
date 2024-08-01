@@ -2,10 +2,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import useMarvelService from 'src/services/MarvelService';
-import setContent from 'src/utils/setContent';
-import AppBanner from 'src/components/interface/appBanner/AppBanner';
+import { useMarvelService } from 'src/services';
+import { AppBanner } from 'src/components/interface';
+import { setContent } from 'src/utils';
 
 const SinglePage = ({ Component, dataType }) => {
     const { id } = useParams();

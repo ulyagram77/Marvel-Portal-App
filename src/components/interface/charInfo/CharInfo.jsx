@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { useMarvelService } from 'src/services';
+import { setContent } from 'src/utils';
+import { arrow } from 'src/assets';
 
-import useMarvelService from 'src/services/MarvelService';
-import setContent from 'src/utils/setContent';
-
-import arrow from 'src/assets/arrow.svg';
 import './CharInfo.scss';
 
 const CharInfo = props => {

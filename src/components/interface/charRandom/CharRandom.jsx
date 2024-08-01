@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import useMarvelService from 'src/services/MarvelService';
-import setContent from 'src/utils/setContent';
+import { useMarvelService } from 'src/services';
+import { setContent } from 'src/utils';
 
-import mjolnir from 'src/assets/mjolnir.png';
+import { mjolnir } from 'src/assets';
 import './CharRandom.scss';
 
 const CharRandom = () => {

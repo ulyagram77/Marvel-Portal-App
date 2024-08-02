@@ -92,7 +92,7 @@ const ComicsList = () => {
             {items}
             <button
                 className="button button__main button__long"
-                disabled={paginationLoading}
+                disabled={paginationLoading || loading}
                 style={{ display: comicsEnded ? 'none' : 'block' }}
                 onClick={() => onRequest(offset)}
             >

@@ -101,11 +101,21 @@
         background-color: $grey;
     }
 
-    &:hover {
-        transform: translateY(-5px);
+    @media (any-hover: hover) {
+        &:hover {
+            transform: translateY(-5px);
+        }
     }
 
     &:disabled {
-        filter: grayscale(.5);
+        filter: grayscale(.6);
+        color: #ffffff7e;
+        cursor: not-allowed;
+
+        @media (any-hover: hover) {
+            &:hover {
+                transform: translateY(0px);
+            }
+        }
     }
 }

@@ -118,7 +118,7 @@ const CharList = props => {
             {items}
             <button
                 className="button button__main button__long"
-                disabled={paginationLoading}
+                disabled={paginationLoading || loading}
                 style={{ display: charactersEnded ? 'none' : 'block' }}
                 onClick={() => onRequest(offset)}
             >

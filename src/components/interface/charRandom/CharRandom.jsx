@@ -39,7 +39,11 @@ const CharRandom = () => {
                     Do you want to get to know him better?
                 </p>
                 <p className="randomchar__title">Or choose another one</p>
-                <button className="button button__main" onClick={updateCharacter}>
+                <button
+                    className="button button__main"
+                    disabled={process === 'loading'}
+                    onClick={updateCharacter}
+                >
                     <div className="inner">try it</div>
                 </button>
                 <img src={mjolnir} alt="mjolnir" className="randomchar__decoration" />

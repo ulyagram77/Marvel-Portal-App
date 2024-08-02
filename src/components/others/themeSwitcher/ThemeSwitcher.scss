@@ -15,6 +15,7 @@ $btn-width: 90px;
     aspect-ratio: 1;
     background-color: $main-color;
     border-radius: 100%;
+    z-index: 10;
 
     &__icon {
         position: absolute;

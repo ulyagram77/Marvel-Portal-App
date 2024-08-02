@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--text-color);
 
 }
 
@@ -21,7 +22,6 @@
         justify-content: center;
         align-items: center;
         font-size: 18vw;
-        color: $main-color;
         text-align: center;
     }
 
@@ -29,15 +29,14 @@
         position: relative;
         font-size: 1.5em;
         margin-bottom: 20px;
-        color: white;
         background: $main-color;
+        color: #fff;
         font-weight: 300;
         padding: 10px 20px;
         display: inline-block;
     }
 
     p {
-        color: $dark;
         font-size: 1.2em;
     }
 
@@ -47,5 +46,6 @@
 .notFound__img {
     img {
         width: 100%;
+        filter: drop-shadow(0px 0px 10px var(--shadow-color));
     }
 }

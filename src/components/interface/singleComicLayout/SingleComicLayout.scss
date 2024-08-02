@@ -6,10 +6,12 @@
     grid-template-columns: 293px 550px auto;
     column-gap: 50px;
     align-items: start;
+    color: var(--text-color);
 
     &__img {
         width: 293px;
         height: 450px;
+        box-shadow: 0px 0px 10px var(--shadow-color);
     }
 
     &__name {
@@ -28,7 +30,7 @@
         font-weight: bold;
         font-size: 24px;
         line-height: 32px;
-        color: $main-color;
+        color: var(--main-color);
         margin-top: 25px;
     }
 
@@ -39,7 +41,7 @@
         line-height: 24px;
 
         &:hover {
-            color: $main-color;
+            color: var(--main-color);
         }
     }
 }

@@ -1,6 +1,9 @@
+@import 'styles/variables.scss';
+
 .comics {
     &__list {
         margin-top: 45px;
+        color: var(--text-color)
     }
 
     &__grid {
@@ -14,7 +17,7 @@
         transition: 0.3s transform;
 
         &-img {
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+            box-shadow: 1px 1px 10px var(--shadow-color);
             width: 225px;
             height: 345px;
         }
@@ -31,7 +34,7 @@
             font-weight: bold;
             font-size: 14px;
             line-height: 18px;
-            color: rgba(0, 0, 0, 0.6);
+            color: var(--subtext-color);
             text-transform: uppercase;
         }
 

@@ -2,6 +2,7 @@
 
 .app {
     &__header {
+        color: var(--text-color);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -13,7 +14,7 @@
         line-height: 37px;
 
         span {
-            color: $main-color;
+            color: var(--main-color);
         }
     }
 
@@ -29,7 +30,7 @@
                 margin: 0 8px;
 
                 a:hover {
-                    color: $main-color;
+                    color: var(--main-color);
                 }
             }
         }

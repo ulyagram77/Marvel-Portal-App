@@ -1,3 +1,25 @@
 $main-color: #9F0013;
 $dark: #232222;
 $grey: #5C5C5C;
+
+body[data-theme='light'] {
+    --app-color: #F9F9F9;
+    --text-color: #232222;
+    --subtext-color: #5C5C5C;
+
+    --main-color: #9F0013;
+    --dark-color: #232222;
+
+    --shadow-color: rgba(0, 0, 0, 0.25);
+}
+
+body[data-theme='dark'] {
+    --app-color: #232222;
+    --text-color: #f9f9f9;
+    --subtext-color: #ffffff80;
+
+    --main-color: #9F0013;
+    --dark-color: #232222;
+
+    --shadow-color: rgba(255, 255, 255, 0.25);
+}

@@ -1,65 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 @import './variables';
 @import './button';
+@import './null.scss';
 
-#root {
-    position: relative;
-}
+// general styles
 
 * {
     font-family: "Roboto Condensed", sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     background-color: var(--app-color);
 }
 
-ul,
-li,
-dl {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+#root {
+    position: relative;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-
-    &:hover {
-        text-decoration: none;
-        color: inherit;
-    }
-}
-
-p {
-    margin: 0;
-    padding: 0;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+main {
+    margin-top: 50px;
+    position: relative;
 }
 
 .app {
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 50px 0 50px 0;
+    padding: 50px 0;
     position: relative;
 
     .bg-decoration {
@@ -69,13 +35,26 @@ input::-webkit-inner-spin-button {
         z-index: -1;
     }
 
+    @media (max-width: $max-width-desktop) {
+        max-width: $max-width-lg;
+        padding: 50px 30px;
+    }
+
+    @media (max-width: $max-width-lg) {
+        max-width: $max-width-md;
+    }
+
+    @media (max-width: $max-width-md) {
+        max-width: $max-width-sm;
+    }
+
+    @media (max-width: $max-width-xs) {
+        max-width: 100%;
+        padding: 80px 15px;
+    }
 }
 
-main {
-    margin-top: 50px;
-    position: relative;
-}
-
+// animations
 .pulse {
     animation: pulse 1.5s ease-in-out .5s infinite
 }
@@ -94,7 +73,7 @@ main {
     }
 }
 
-/* Общие стили для скроллбара */
+// scrollbar styles
 ::-webkit-scrollbar {
     width: 7px;
     height: 7px;

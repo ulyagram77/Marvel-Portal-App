@@ -10,7 +10,12 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, 225px);
         justify-content: space-between;
+        place-items: center;
         row-gap: 55px;
+
+        @media (max-width: $max-width-sm) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     &__item {
@@ -56,8 +61,18 @@
             transition: opacity 500ms ease-in;
         }
 
-        &:hover {
-            transform: translateY(-5px);
+        @media (any-hover: hover) {
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: $max-width-sm) {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
     }
 }

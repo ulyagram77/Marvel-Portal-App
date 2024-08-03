@@ -5,9 +5,11 @@ import { CharInfo, CharList, CharRandom, CharSearchForm } from 'src/components/i
 import { ErrorBoundary } from 'src/components/others';
 
 import { decoration } from 'src/assets';
+import { useMatchMedia } from 'src/hooks';
 
 const MainPage = () => {
     const [selectedCharacter, setSelectedCharacter] = useState(null);
+    const { isTablet, isMobile } = useMatchMedia();
 
     const onCharacterSelected = id => {
         setSelectedCharacter(id);
@@ -28,16 +30,20 @@ const MainPage = () => {
                     <CharList onCharacterSelected={onCharacterSelected} />
                 </ErrorBoundary>
 
-                <div className="char__block">
-                    <ErrorBoundary>
-                        <CharInfo characterId={selectedCharacter} />
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <CharSearchForm />
-                    </ErrorBoundary>
-                </div>
+                {isTablet || isMobile ? null : (
+                    <div className="char__block">
+                        <ErrorBoundary>
+                            <CharInfo characterId={selectedCharacter} />
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <CharSearchForm />
+                        </ErrorBoundary>
+                    </div>
+                )}
             </div>
-            <img className="bg-decoration" src={decoration} alt="vision" />
+            {isTablet || isMobile ? null : (
+                <img className="bg-decoration" src={decoration} alt="vision" />
+            )}
         </>
     );
 };

@@ -40,8 +40,27 @@
         font-size: 18px;
         line-height: 24px;
 
-        &:hover {
-            color: var(--main-color);
+        @media (any-hover: hover) {
+            &:hover {
+                color: var(--main-color);
+            }
         }
+
+        @media (max-width: $max-width-desktop) {
+            width: 100%;
+            text-align: center;
+            background-color: $main-color;
+            padding: 5px;
+            color: #fff;
+        }
+    }
+
+    @media (max-width: $max-width-desktop) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        text-align: center;
     }
 }

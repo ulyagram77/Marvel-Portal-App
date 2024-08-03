@@ -16,6 +16,10 @@
         span {
             color: var(--main-color);
         }
+
+        @media (max-width: $max-width-sm) {
+            font-size: 22px;
+        }
     }
 
     &__menu {

@@ -17,6 +17,28 @@
             color: #FFFFFF;
             padding-left: 83px;
             padding-top: 18px;
+
+            @media (max-width: $max-width-md) {
+                padding: 0;
+                text-align: center;
+            }
+
+            @media (max-width: $max-width-sm) {
+                font-size: 18px;
+            }
+        }
+
+        &-img {
+            @media (max-width: $max-width-md) {
+                display: none;
+            }
+        }
+
+        @media (max-width: $max-width-md) {
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

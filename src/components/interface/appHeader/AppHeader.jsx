@@ -13,6 +13,7 @@ const AppHeader = () => {
 
     const isLinkActive = ({ isActive }) => ({
         color: isActive ? '#9f0013' : 'inherit',
+        fontWeight: isActive ? '700' : 'inherit',
     });
 
     return (

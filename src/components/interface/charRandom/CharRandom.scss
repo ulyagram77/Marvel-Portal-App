@@ -77,6 +77,10 @@
         button {
             margin-top: 13px;
         }
+
+        @media (max-width: $max-width-lg) {
+            text-align: center;
+        }
     }
 
     &__title {
@@ -85,6 +89,7 @@
         line-height: 32px;
         letter-spacing: -0.045em;
         color: #FFFFFF;
+
 
         &:nth-child(2) {
             margin-top: 33px;
@@ -95,7 +100,10 @@
         position: absolute;
         bottom: 14px;
         right: -37px;
-        z-index: 1;
+
+        @media (max-width: $max-width-md) {
+            display: none;
+        }
     }
 
     @media (max-width: $max-width-desktop) {

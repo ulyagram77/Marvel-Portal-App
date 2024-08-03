@@ -2,6 +2,12 @@ $main-color: #9F0013;
 $dark: #232222;
 $grey: #5C5C5C;
 
+$max-width-desktop: 1200px;
+$max-width-lg: 960px;
+$max-width-md: 768px;
+$max-width-sm: 540px;
+$max-width-xs: 576px;
+
 body[data-theme='light'] {
     --app-color: #F9F9F9;
     --text-color: #232222;

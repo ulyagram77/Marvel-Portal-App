@@ -1,0 +1,42 @@
+@import 'styles/variables.scss';
+
+.menu__icon {
+    display: inline-block;
+    cursor: pointer;
+    transition: .2s transform ease-in-out, .2s width ease-in-out;
+
+    &>span {
+        display: block;
+        width: 28px;
+        height: 2px;
+        border-radius: 9999px;
+        background-color: var(--text-color);
+        transition: .2s transform ease-in-out, .2s width ease-in-out;
+
+        &:not(:last-child) {
+            margin-bottom: 7px;
+        }
+    }
+
+    &.active {
+        transition-delay: 0.4s;
+        transform: rotate(45deg);
+
+        &>span:nth-child(2) {
+            width: 0;
+        }
+
+        &>span:nth-child(1),
+        &>span:nth-child(3) {
+            transition-delay: .2s;
+        }
+
+        &>span:nth-child(1) {
+            transform: translateY(9px);
+        }
+
+        &>span:nth-child(3) {
+            transform: translateY(-9px) rotate(90deg);
+        }
+    }
+}

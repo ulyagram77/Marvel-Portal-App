@@ -1,0 +1,42 @@
+@import 'styles/variables.scss';
+
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__body {
+        position: absolute;
+        right: 0;
+        top: 40px;
+
+        visibility: hidden;
+        opacity: 0;
+
+        width: 130px;
+        min-height: 120px;
+        padding: 10px;
+        font-size: 18px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        background-color: var(--app-color);
+        box-shadow: 0px 0px 10px var(--shadow-color);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 5px;
+
+        transition: 0.5s opacity ease-in-out;
+
+        z-index: 10;
+
+        &.active {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

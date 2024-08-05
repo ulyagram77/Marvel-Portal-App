@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { useMarvelService } from 'src/services';
 import { ErrorMessage, Spinner } from 'src/components/others';
 
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import './ComicsList.scss';
 
 const ComicsList = () => {
@@ -14,6 +14,7 @@ const ComicsList = () => {
     const [offset, setOffset] = useState(400);
     const [comicsEnded, setComicsEnded] = useState(false);
 
+    const [parent] = useAutoAnimate();
     const { loading, error, getAllComics } = useMarvelService();
 
     useEffect(() => {
@@ -55,27 +56,25 @@ const ComicsList = () => {
     };
 
     function renderItems(items) {
-        const renderedItems = items.map((item, i) => {
+        const renderedItems = items.map(item => {
             return (
-                <CSSTransition key={i} timeout={500} classNames="comics__item">
-                    <li className="comics__item">
-                        <Link to={`/comics/${item.id}`}>
-                            <img
-                                src={item.thumbnail}
-                                alt={item.title}
-                                className="comics__item-img"
-                            />
-                            <div className="comics__item-name">{item.title}</div>
-                            <div className="comics__item-price">{item.price}</div>
-                        </Link>
-                    </li>
-                </CSSTransition>
+                <li className="comics__item" key={item.id}>
+                    <Link to={`/comics/${item.id}`}>
+                        <img
+                            src={item.thumbnail}
+                            alt={item.title}
+                            className="comics__item-img"
+                        />
+                        <div className="comics__item-name">{item.title}</div>
+                        <div className="comics__item-price">{item.price}</div>
+                    </Link>
+                </li>
             );
         });
 
         return (
-            <ul className="comics__grid">
-                <TransitionGroup component={null}>{renderedItems}</TransitionGroup>
+            <ul className="comics__grid" ref={parent}>
+                {renderedItems}
             </ul>
         );
     }

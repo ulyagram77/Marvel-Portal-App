@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import { useMarvelService } from 'src/services';
 import { AppBanner } from 'src/components/interface';
 import { setContent } from 'src/utils';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 const SinglePage = ({ Component, dataType }) => {
     const { id } = useParams();
     const [data, setData] = useState(null);
+
+    const [parent] = useAutoAnimate();
     const { getComic, getCharacter, clearError, process, setProcess } =
         useMarvelService();
 
@@ -39,7 +42,7 @@ const SinglePage = ({ Component, dataType }) => {
     return (
         <>
             <AppBanner />
-            {setContent(process, Component, data)}
+            <section ref={parent}>{setContent(process, Component, data)}</section>
         </>
     );
 };

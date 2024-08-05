@@ -6,10 +6,12 @@ import { setContent } from 'src/utils';
 
 import { mjolnir } from 'src/assets';
 import './CharRandom.scss';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 const CharRandom = () => {
     const [char, setChar] = useState({});
 
+    const [parent] = useAutoAnimate();
     const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
@@ -30,7 +32,7 @@ const CharRandom = () => {
     };
 
     return (
-        <div className="randomchar">
+        <div className="randomchar" ref={parent}>
             {setContent(process, View, char)}
             <div className="randomchar__static">
                 <p className="randomchar__title">

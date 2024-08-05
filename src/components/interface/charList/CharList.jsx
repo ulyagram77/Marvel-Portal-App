@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { useMarvelService } from 'src/services';
 import { ErrorMessage, Spinner } from 'src/components/others';
 
-import './CharList.scss';
 import { useMatchMedia } from 'src/hooks';
 import { Link } from 'react-router-dom';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import './CharList.scss';
 
 const CharList = props => {
     const [characters, setCharacters] = useState([]);
@@ -16,8 +16,8 @@ const CharList = props => {
     const [offset, setOffset] = useState(400);
     const [charactersEnded, setCharactersEnded] = useState(false);
 
+    const [parent] = useAutoAnimate();
     const { isMobile, isTablet } = useMatchMedia();
-
     const { loading, error, getAllCharacters } = useMarvelService();
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const CharList = props => {
             }
 
             return (
-                <CSSTransition key={item.id} timeout={500} classNames="char__item">
+                <div key={item.id}>
                     {isMobile || isTablet ? (
                         <Link to={`/characters/${item.id}`} className="char__item">
                             <li className="char__item" tabIndex={0}>
@@ -113,13 +113,13 @@ const CharList = props => {
                             <div className="char__name">{item.name}</div>
                         </li>
                     )}
-                </CSSTransition>
+                </div>
             );
         });
-        // конструкция вынесена для центровки спиннера/ошибки
+
         return (
-            <ul className="char__grid">
-                <TransitionGroup component={null}>{renderedItems}</TransitionGroup>
+            <ul className="char__grid" ref={parent}>
+                {renderedItems}
             </ul>
         );
     }

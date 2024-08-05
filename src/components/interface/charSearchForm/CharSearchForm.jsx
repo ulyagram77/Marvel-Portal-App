@@ -7,9 +7,12 @@ import { useMarvelService } from 'src/services';
 import { ErrorMessage } from 'src/components/others';
 
 import './CharSearchForm.scss';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 const CharSearchForm = () => {
     const [char, setChar] = useState(null);
+
+    const [parent] = useAutoAnimate();
     const { process, getCharacterByName, clearError } = useMarvelService();
 
     const onCharLoaded = char => {
@@ -45,7 +48,7 @@ const CharSearchForm = () => {
     );
 
     return (
-        <div className="char__search-form">
+        <div className="char__search-form" ref={parent}>
             <Formik
                 initialValues={{
                     charName: '',
@@ -57,7 +60,7 @@ const CharSearchForm = () => {
                     updateChar(charName);
                 }}
             >
-                <Form>
+                <Form ref={parent}>
                     <label className="char__search-label" htmlFor="charName">
                         Or find a character by name:
                     </label>

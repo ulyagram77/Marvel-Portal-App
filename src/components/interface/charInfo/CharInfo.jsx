@@ -11,6 +11,8 @@ import './CharInfo.scss';
 
 const CharInfo = props => {
     const [char, setChar] = useState(null);
+
+    const [parent] = useAutoAnimate();
     const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
@@ -34,7 +36,11 @@ const CharInfo = props => {
         setChar(char);
     };
 
-    return <div className="char__info">{setContent(process, View, char)}</div>;
+    return (
+        <div className="char__info" ref={parent}>
+            {setContent(process, View, char)}
+        </div>
+    );
 };
 
 const View = ({ data }) => {

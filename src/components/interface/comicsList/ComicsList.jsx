@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { useMarvelService } from 'src/services';
+import { useLocalStorageService, useMarvelService } from 'src/services';
 import { ErrorMessage, Spinner } from 'src/components/others';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
@@ -11,14 +11,23 @@ import './ComicsList.scss';
 const ComicsList = () => {
     const [comics, setComics] = useState([]);
     const [paginationLoading, setPaginationLoading] = useState(false);
-    const [offset, setOffset] = useState(400);
+    const [offset, setOffset] = useState(500);
     const [comicsEnded, setComicsEnded] = useState(false);
 
     const [parent] = useAutoAnimate();
+
+    const { setItems, getItems } = useLocalStorageService();
     const { loading, error, getAllComics } = useMarvelService();
 
     useEffect(() => {
-        onRequest(offset, true);
+        const savedData = getItems('comics');
+        if (savedData) {
+            setComics(savedData.comics);
+            setOffset(savedData.offset);
+            setComicsEnded(savedData.comicsEnded);
+        } else {
+            onRequest(offset, true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -36,6 +45,7 @@ const ComicsList = () => {
         return () => {
             window.removeEventListener('scrollend', handleScroll);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [offset, loading]);
 
     const onRequest = (offset, initial) => {
@@ -45,14 +55,23 @@ const ComicsList = () => {
 
     const onComicsListLoaded = newComics => {
         let ended = false;
+
         if (newComics.length < 8) {
             ended = true;
         }
 
-        setComics(comics => [...comics, ...newComics]);
+        const updatedComics = [...comics, ...newComics];
+
+        setComics(updatedComics);
         setPaginationLoading(false);
         setOffset(offset => offset + 8);
         setComicsEnded(ended);
+
+        setItems('comics', {
+            comics: updatedComics,
+            offset: offset + 9,
+            comicsEnded: ended,
+        });
     };
 
     function renderItems(items) {

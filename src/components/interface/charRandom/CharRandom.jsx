@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { useMarvelService } from 'src/services';
+import { useLocalStorageService, useMarvelService } from 'src/services';
 import { setContent } from 'src/utils';
 
 import { mjolnir } from 'src/assets';
@@ -12,23 +12,34 @@ const CharRandom = () => {
     const [char, setChar] = useState({});
 
     const [parent] = useAutoAnimate();
+
+    const { setItems, getItems } = useLocalStorageService();
     const { process, setProcess, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
-        updateCharacter();
+        const savedData = getItems('char');
+        if (savedData) {
+            setChar(savedData);
+            setProcess('confirmed');
+        } else {
+            updateCharacter();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const updateCharacter = () => {
+        setProcess('loading');
         clearError();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         getCharacter(id)
             .then(onCharacterLoaded)
-            .then(() => setProcess('confirmed'));
+            .catch(() => setProcess('error')); // Обработка ошибки
     };
 
     const onCharacterLoaded = char => {
         setChar(char);
+        setItems('char', char);
+        setProcess('confirmed');
     };
 
     return (

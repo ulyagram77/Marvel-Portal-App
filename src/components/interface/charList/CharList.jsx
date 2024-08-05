@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-
 import PropTypes from 'prop-types';
-
-import { useMarvelService } from 'src/services';
+import { useLocalStorageService, useMarvelService } from 'src/services';
 import { ErrorMessage, Spinner } from 'src/components/others';
-
 import { useMatchMedia } from 'src/hooks';
 import { Link } from 'react-router-dom';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
@@ -17,11 +14,20 @@ const CharList = props => {
     const [charactersEnded, setCharactersEnded] = useState(false);
 
     const [parent] = useAutoAnimate();
+
+    const { setItems, getItems } = useLocalStorageService();
     const { isMobile, isTablet } = useMatchMedia();
     const { loading, error, getAllCharacters } = useMarvelService();
 
     useEffect(() => {
-        onRequest(offset, true);
+        const savedData = getItems('characters');
+        if (savedData) {
+            setCharacters(savedData.characters);
+            setOffset(savedData.offset);
+            setCharactersEnded(savedData.charactersEnded);
+        } else {
+            onRequest(offset, true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -69,10 +75,18 @@ const CharList = props => {
             ended = true;
         }
 
-        setCharacters(characters => [...characters, ...newCharacters]);
+        const updatedCharacters = [...characters, ...newCharacters];
+
+        setCharacters(updatedCharacters);
         setPaginationLoading(false);
         setOffset(offset => offset + 9);
         setCharactersEnded(ended);
+
+        setItems('characters', {
+            characters: updatedCharacters,
+            offset: offset + 9,
+            charactersEnded: ended,
+        });
     };
 
     function renderItems(items) {

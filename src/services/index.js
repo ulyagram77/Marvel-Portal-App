@@ -1,2 +1,3 @@
 import useMarvelService from './MarvelService';
-export { useMarvelService };
+import useLocalStorageService from './LocalStorageService';
+export { useMarvelService, useLocalStorageService };
